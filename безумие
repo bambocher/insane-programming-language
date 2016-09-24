@@ -1,0 +1,48 @@
+#!/bin/env bash
+
+echo '
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+#define программа        int main(int argc, char **argv)
+#define печатать(...)    printf(__VA_ARGS__); printf("\n");
+#define ошибка(fmt, ...) fprintf(stderr, fmt, ##__VA_ARGS__); printf("\n");
+#define сканировать(...) scanf(__VA_ARGS__)
+#define вернуть          return
+#define для              for(
+#define пока             while(
+#define прервать         break;
+#define продолжить       continue;
+#define бесконечно       while(1){
+#define выполнить        ){
+#define начало           {
+#define конец            }
+#define если             if(
+#define иначе            }else{ 
+#define иначеесли        }else if(
+#define тогда            ){ 
+#define не               !
+#define и                &&
+#define или              ||
+#define больше           >
+#define меньше           <
+#define равно            ==
+#define тип              typedef
+#define структура        struct
+#define объединение      union
+#define перечисление     enum
+#define константа        const
+#define указатель        *
+#define функция          void
+#define символ           char
+#define целое            int
+#define вещественное     float
+#define логическое       bool
+#define ничего           NULL
+#define размер           size_t
+#define истина           true
+#define ложь             false
+' > /tmp/$0.з
+
+clang -std=c99 -x c $1 -include /tmp/$0.з -o /tmp/${1%.*} && /tmp/${1%.*}
